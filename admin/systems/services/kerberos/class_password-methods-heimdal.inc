@@ -121,8 +121,8 @@ class passwordMethodheimdal extends passwordMethod
     }
 
     $cmd = "";
-    if($this->config->get_cfg_value("heimdal_keygen") != ""){
-      $cmd = $this->config->get_cfg_value("heimdal_keygen");
+    if($this->config->get_cfg_value("kerberos", "heimdal_keygen") != ""){
+      $cmd = $this->config->get_cfg_value("kerberos", "heimdal_keygen");
       if(!check_command($cmd)){
         new msg_dialog(_("Heimdal"), msgPool::cmdinvalid("HEIMDAL_KEYGEN",$cmd,_("Heimdal")),WARNING_DIALOG);
       }
@@ -138,7 +138,7 @@ class passwordMethodheimdal extends passwordMethod
 	function generate_hash($pwd)
 	{
     $mode= "kerberos";
-    if ($this->config->get_cfg_value("useSaslForKerberos") == "true"){
+    if ($this->config->get_cfg_value("kerberos", "useSaslForKerberos") == "true"){
       $mode= "sasl";
     }
 
@@ -171,8 +171,8 @@ class passwordMethodheimdal extends passwordMethod
 
     global $config;
     $cmd = "";
-    if($this->config->get_cfg_value("heimdal_keygen") != ""){
-      $cmd = $this->config->get_cfg_value("heimdal_keygen");
+    if($this->config->get_cfg_value("kerberos", "heimdal_keygen") != ""){
+      $cmd = $this->config->get_cfg_value("kerberos", "heimdal_keygen");
       if(!check_command($cmd)){
         new msg_dialog(_("Heimdal"), msgPool::cmdinvalid("HEIMDAL_KEYGEN",$cmd,_("Heimdal")),WARNING_DIALOG);
       }
@@ -196,7 +196,7 @@ class passwordMethodheimdal extends passwordMethod
   function get_hash_name()
   {
     $mode= "kerberos";
-    if ($this->config->get_cfg_value("useSaslForKerberos") == "true"){
+    if ($this->config->get_cfg_value("kerberos", "useSaslForKerberos") == "true"){
       $mode= "sasl";
     }
     return "$mode";
